@@ -74,6 +74,7 @@ Following methods are implemented:
 
 freeze_api_account 		POST   /api/accounts/:id/freeze(.:format)     {:action=>"freeze", :controller=>"api/accounts"}
 
+```
 Freeze user account - only read operation can be executed on that account.
 
 Params:
@@ -81,8 +82,10 @@ Params:
 	
 Response:
 	Empty document
+```
 
 
+```
 unfreeze_api_account 	POST   /api/accounts/:id/unfreeze(.:format)   {:action=>"unfreeze", :controller=>"api/accounts"}
 payment_api_account 	POST   /api/accounts/:id/payment(.:format)    {:action=>"payment", :controller=>"api/accounts"}
 history_api_account 	GET    /api/accounts/:id/history(.:format)    {:action=>"history", :controller=>"api/accounts"}
@@ -93,4 +96,4 @@ api_accounts 			GET    /api/accounts(.:format)                {:action=>"index",
 api_account 			GET    /api/accounts/:id(.:format)            {:action=>"show", :controller=>"api/accounts"}
                        	PUT    /api/accounts/:id(.:format)            {:action=>"update", :controller=>"api/accounts"}
                        	DELETE /api/accounts/:id(.:format)            {:action=>"destroy", :controller=>"api/accounts"}
-
+```
