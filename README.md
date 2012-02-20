@@ -72,7 +72,7 @@ INTERFACE
 Following methods are implemented:
 
 
-freeze_api_account 		POST   /api/accounts/:id/freeze(.:format)     {:action=>"freeze", :controller=>"api/accounts"}
+freeze_api_account POST /api/accounts/:id/freeze(.:format)
 
 ```
 Freeze user account - only read operation can be executed on that account.
@@ -87,7 +87,7 @@ Response:
 
 
 ```
-unfreeze_api_account 	POST   /api/accounts/:id/unfreeze(.:format)   {:action=>"unfreeze", :controller=>"api/accounts"}
+unfreeze_api_account POST /api/accounts/:id/unfreeze(.:format)
 
 Unfreeze user account 
 
@@ -100,7 +100,7 @@ Response:
 
 
 ```
-payment_api_account 	POST   /api/accounts/:id/payment(.:format)    {:action=>"payment", :controller=>"api/accounts"}
+payment_api_account POST /api/accounts/:id/payment(.:format)
 
 Make payment to account:
 
