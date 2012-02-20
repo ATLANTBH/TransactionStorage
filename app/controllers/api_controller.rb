@@ -15,6 +15,7 @@
 #
 # NOTE: Secret key must not be send!!!
 #
+# 
 require 'utils'
 require 'config/configuration'
 require 'digest/sha2'

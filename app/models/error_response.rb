@@ -1,6 +1,6 @@
 ###########################################
 #
-# Domain response for all errors.
+# Domain model responsible for all errors.
 #
 # Raise this exception and api_controller
 # will render it as Response object

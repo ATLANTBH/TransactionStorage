@@ -12,12 +12,7 @@ class Api::AccountsController < Api::ApiController
     raise ErrorResponse.not_implemented
   end
   
-  def create
-    required_params([:user_id])
-    
-    render :response => Account.create_account(params[:user_id], request.remote_ip)
-  end
-  
+
   def update
     raise ErrorResponse.not_implemented
   end
@@ -74,6 +69,13 @@ class Api::AccountsController < Api::ApiController
     
     render :response => { }
   end
+  
+  def create
+    required_params([:user_id])
+    
+    render :response => Account.create_account(params[:user_id], request.remote_ip)
+  end
+  
   
   def group_info
     required_params([:id, :link_id])

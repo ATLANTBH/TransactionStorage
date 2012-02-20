@@ -1,6 +1,8 @@
 ###################################
 #
-# Every rsponse is in this domain class. E.g.
+# Every response is represented via Response
+#
+# Sample response:
 #
 #  {
 #    status   : { code : 0, message : 'ok' },

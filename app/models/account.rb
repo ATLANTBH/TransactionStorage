@@ -1,13 +1,3 @@
-####################################
-#
-# Main BL logic goes here:
-#
-# - creating accounts
-# - account info/stats
-# - make payments
-# - account history
-#
-
 require 'utils'
 
 class Account < ActiveRecord::Base
@@ -21,36 +11,6 @@ class Account < ActiveRecord::Base
   TRANSACTION_GROUP_SEQUENCE = 'transaction_group_seq'
   
   has_many  :transactions
-
-  # Crate new account
-  def self.create_account(user_id, creation_ip)
-    if (Account.where(:user_id => user_id, :ip => ip2number(creation_ip)).length > 0) 
-      raise "Accout for user #{user_id} already exists!!!"
-    end
-    
-    account = Account.new({ :state => STATE_ACTIVE, :user_id => user_id, :last_transaction => Time.now, :ip => ip2number(creation_ip)  })
-    account.save
-    return account
-  end
-  
-  # Get all acccounts
-  def self.get_all_accounts(page)
-    return Account.where(:state => STATE_ACTIVE).limit(15).offset(page)
-  end
-  
-  # Get active account - lock row if needed. FROZEN or DISABLED accounts will raise error
-  def self.get_active_account(id, lock = false)
-    account =  Account.where(:id => id, :state => STATE_ACTIVE).lock(lock).first
-    raise ErrorResponse.no_account(id) if account.nil?
-    return account
-  end
-  
-  # Get account - lock row if needed
-  def self.get_account(id, lock = false)
-    account =  Account.where(:id => id).lock(lock).first
-    raise ErrorResponse.no_account(id) if account.nil?
-    return account
-  end
   
   # Delete account - not realy, just change state
   def delete_account()
@@ -236,6 +196,36 @@ class Account < ActiveRecord::Base
     end
       
     return (octets[0].to_i * 16777216) + (octets[1].to_i * 65536) + (octets[2].to_i * 256) + (octets[3].to_i)
+  end  
+  
+  # Crate new account
+  def self.create_account(user_id, creation_ip)
+    if (Account.where(:user_id => user_id, :ip => ip2number(creation_ip)).length > 0) 
+      raise "Accout for user #{user_id} already exists!!!"
+    end
+    
+    account = Account.new({ :state => STATE_ACTIVE, :user_id => user_id, :last_transaction => Time.now, :ip => ip2number(creation_ip)  })
+    account.save
+    return account
+  end
+  
+  # Get all acccounts
+  def self.get_all_accounts(page)
+    return Account.where(:state => STATE_ACTIVE).limit(15).offset(page)
+  end
+  
+  # Get active account - lock row if needed. FROZEN or DISABLED accounts will raise error
+  def self.get_active_account(id, lock = false)
+    account =  Account.where(:id => id, :state => STATE_ACTIVE).lock(lock).first
+    raise ErrorResponse.no_account(id) if account.nil?
+    return account
+  end
+  
+  # Get account - lock row if needed
+  def self.get_account(id, lock = false)
+    account =  Account.where(:id => id).lock(lock).first
+    raise ErrorResponse.no_account(id) if account.nil?
+    return account
   end  
   
 end
