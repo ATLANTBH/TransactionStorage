@@ -83,8 +83,6 @@ Response:
 	Empty document
 ```
 
-
-
 ```
 unfreeze_api_account POST /api/accounts/:id/unfreeze(.:format)
 
@@ -96,7 +94,6 @@ Params:
 Response:
 	Empty document
 ```
-
 
 ```
 payment_api_account POST /api/accounts/:id/payment(.:format)
@@ -120,15 +117,98 @@ Params:
      }
    ]
 }]
+
+Response:
+	Empty document
 ```
 
 ```
-history_api_account 	GET    /api/accounts/:id/history(.:format)    {:action=>"history", :controller=>"api/accounts"}
-stats_api_account 		GET    /api/accounts/:id/stats(.:format)      {:action=>"stats", :controller=>"api/accounts"}
-group_info_api_account 	GET    /api/accounts/:id/group_info(.:format) {:action=>"group_info", :controller=>"api/accounts"}
-api_accounts 			GET    /api/accounts(.:format)                {:action=>"index", :controller=>"api/accounts"}
-                    	POST   /api/accounts(.:format)                {:action=>"create", :controller=>"api/accounts"}
-api_account 			GET    /api/accounts/:id(.:format)            {:action=>"show", :controller=>"api/accounts"}
-                       	PUT    /api/accounts/:id(.:format)            {:action=>"update", :controller=>"api/accounts"}
-                       	DELETE /api/accounts/:id(.:format)            {:action=>"destroy", :controller=>"api/accounts"}
+history_api_account GET /api/accounts/:id/history(.:format)
+
+Get account history
+
+Params:
+	id - account id
+	offset - paging offset
+	
+Response:
+	Array of serialized transaction models belonging to that account
+
+```
+
+
+```
+stats_api_account GET /api/accounts/:id/stats(.:format)
+
+Get account statistics
+
+Params:
+	id - account id
+	
+Returns:
+	Available balance
+```
+
+
+```
+group_info_api_account GET /api/accounts/:id/group_info(.:format)
+
+Get all transactions from specified group
+
+Params:
+	id -  account id
+	link_id - id of group/link
+
+Response:
+	Array of serialized transaction models belonging to that group
+
+```
+
+```
+api_accounts GET /api/accounts(.:format)
+
+Not implemented!!!
+```
+
+```
+create_account POST /api/accounts(.:format)
+
+Create new account
+
+Params:
+	user_id - unique id from client system. 
+Response:
+	Serialized account model.
+```
+
+```
+api_account GET /api/accounts/:id(.:format)
+
+Get account information
+
+Params:
+	id - account id
+	
+Response:
+	Serialized account model
+
+```
+
+```
+update_account PUT /api/accounts/:id(.:format)
+
+Not implemented!!!
+```
+
+
+```
+delete_account DELETE /api/accounts/:id(.:format)
+
+Delete account (soft delete)
+
+Params:
+	id - account id to delete
+	
+Response:
+	Empty document
 ```
