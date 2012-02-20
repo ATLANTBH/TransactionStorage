@@ -85,9 +85,45 @@ Response:
 ```
 
 
+
 ```
 unfreeze_api_account 	POST   /api/accounts/:id/unfreeze(.:format)   {:action=>"unfreeze", :controller=>"api/accounts"}
+
+Unfreeze user account 
+
+Params:
+	id - account id
+	
+Response:
+	Empty document
+```
+
+
+```
 payment_api_account 	POST   /api/accounts/:id/payment(.:format)    {:action=>"payment", :controller=>"api/accounts"}
+
+Make payment to account:
+
+Params: 
+[{
+   source    : {
+     name : 'Paypal',
+     data : 'HFKLF97856OPYTWMX86FFKJF876'
+   },
+   orders : [
+     {
+       order : 1234,
+       pieces : [
+         { amount  :-120, account : 10, type : 'P' },
+         { amount  :  80, account : 2, type : 'T' },
+         { amount  :  15, account : 3, type : 'T' }
+       ]
+     }
+   ]
+}]
+```
+
+```
 history_api_account 	GET    /api/accounts/:id/history(.:format)    {:action=>"history", :controller=>"api/accounts"}
 stats_api_account 		GET    /api/accounts/:id/stats(.:format)      {:action=>"stats", :controller=>"api/accounts"}
 group_info_api_account 	GET    /api/accounts/:id/group_info(.:format) {:action=>"group_info", :controller=>"api/accounts"}
