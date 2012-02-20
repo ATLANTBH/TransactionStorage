@@ -63,7 +63,7 @@ POST /api_account ts=17376648367&user_id=86539&hash=#{signature}
 ```
 
 
-
+!!!NOTE: NEVER SEND SECRET IN REQUEST PARAMETERS!!!
 
 
 INTERFACE
