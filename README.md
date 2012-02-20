@@ -34,6 +34,38 @@ rails s -p 4000
 ```
 
 
+CALLING AND AUTHENTICATING SYSTEM
+---------------------
+
+Each request is composed of:
+
+1. Parameters - depending on function
+2. Timestamp - Timestamp of call
+3. Signature  - hash based signature of params and timestamp
+
+
+Signature is created in following manner:
+
+1. Sort all parameters based on parameter name
+2. Build string of (key,value) pairs like : key1=value1key2=value2...
+3. Append secret key to them 'key1=value1key2=value2...secret'
+4. Generate SHA256 hash from that string
+
+Example of call (create user account):
+
+
+```
+POST /api_account user_id=86539
+
+signature = SHA256("ts=17376648367user_id=86539#{Config::Configuration.get(:transaction_engine, :secret)}")
+
+POST /api_account ts=17376648367&user_id=86539&hash=#{signature}
+```
+
+
+
+
+
 INTERFACE
 ---------------------
 
