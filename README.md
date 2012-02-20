@@ -71,10 +71,9 @@ INTERFACE
 
 Following methods are implemented:
 
-
+```
 freeze_api_account POST /api/accounts/:id/freeze(.:format)
 
-```
 Freeze user account - only read operation can be executed on that account.
 
 Params:
